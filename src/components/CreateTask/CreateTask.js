@@ -1,15 +1,25 @@
 import { useState, useContext } from "react";
+import { v4 } from "uuid";
 
 import { Context as TodoContext } from "../../context";
+import { Action } from "../../context/reducer";
 import "./CreateTask.css";
 
 function CreateTask() {
   const [todo, setTodo] = useState("");
-  const { addTodo } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addTodo(todo);
+
+    dispatch({
+      type: Action.CREATE_TODO,
+      payload: {
+        id: v4(),
+        todo,
+        complete: false,
+      },
+    });
     setTodo("");
   };
 

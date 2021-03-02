@@ -3,7 +3,7 @@ import { Context as TodoContext } from "../../context";
 import Task from "../Task";
 import "./TaskList.css";
 
-export default function TaskList({ id, todo, complete }) {
+export default function TaskList() {
   const { todos } = useContext(TodoContext);
   return (
     <ul className="TaskList">

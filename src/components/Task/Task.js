@@ -1,9 +1,19 @@
 import { useContext } from "react";
 import { Context as TodoContext } from "../../context";
+import { Action } from "../../context/reducer";
 import "./Task.css";
 
 export default function Task({ id, todo, complete }) {
-  const { updateTodo } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
+  const updateTodo = (id, status) => {
+    dispatch({
+      type: Action.UPDATE_TODO,
+      payload: {
+        id,
+        status,
+      },
+    });
+  };
   return (
     <li className="Task">
       <span>
